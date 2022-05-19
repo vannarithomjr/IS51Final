@@ -37,3 +37,34 @@ calculate_percent_above_average:
 
 call main
 """
+
+
+# This method kickstarts the program
+# Calls for the calculator function
+def main():
+    calculate_percent_above_average("Final.txt")
+
+# This method reads the text file, store the grades in a list
+# Once it has the list, it calculates the number of grades, the average grade, and the percentage of numbers avobe the average
+def calculate_percent_above_average(text_file):
+    grades = []
+    infile = open(text_file, 'r')
+    for grade in infile:
+        grades.append(int(grade))
+    infile.close()
+
+    number_of_grades = len(grades)
+    average_grade = float(sum(grades) / len(grades))
+    
+    above_average_counter = 0
+    for i in grades:
+        if i > average_grade:
+            above_average_counter += 1
+        
+    above_average_percentage = round((above_average_counter / number_of_grades) * 100, 2)
+
+    print("Number of grades:", number_of_grades)
+    print("Average grade:", average_grade)
+    print("Percentage of grades before average:", above_average_percentage, "%")
+
+main()
